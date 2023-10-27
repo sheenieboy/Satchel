@@ -84,6 +84,7 @@ local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
 local HOTBAR_SLOTS_VR: number = 6
 local HOTBAR_SLOTS_MINI: number = 6 -- Mobile gets 6 slots instead of default 3 it had before
 local HOTBAR_SLOTS_WIDTH_CUTOFF: number = 1024 -- Anything smaller is MINI
+local HOTBAR_ALWAYS_SHOW: boolean = targetScript:GetAttribute("AlwaysShowHotbar") or false
 
 local INVENTORY_ROWS_FULL: number = 4
 local INVENTORY_ROWS_VR: number = 3

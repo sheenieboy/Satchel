@@ -1,6 +1,9 @@
 {
     "properties": {
         "Attributes": {
+            "AlwaysShowHotbar": {
+                "Bool": false
+            },
             "BackgroundColor3": {
                 "Color3": [
                     0.0980392157,
