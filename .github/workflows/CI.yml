@@ -17,10 +17,10 @@ jobs:
         id: selene
         run: |
           OUTPUT=$(selene src)
-          echo "::set-output name=selene_output::$OUTPUT"
+          echo "SELENE_OUTPUT=$OUTPUT" >> $GITHUB_ENV
       - name: Add output to job summary
         run: |
-          echo "### Selene Output: ${{ steps.selene.outputs.selene_output }}" >> $GITHUB_STEP_SUMMARY
+          echo "### Selene Output: $SELENE_OUTPUT" >> $GITHUB_STEP_SUMMARY
   style:
     runs-on: ubuntu-latest
     steps:
@@ -35,4 +35,4 @@ jobs:
           args: --check src
       - name: Adding output to job summary
         run: |
-          echo "### StyLua Output: ${{ steps.stylua.outputs.stylua_output }}" >> $GITHUB_STEP_SUMMARY
+          echo "### StyLua Output: $STYLUA_OUTPUT" >> $GITHUB_STEP_SUMMARY
