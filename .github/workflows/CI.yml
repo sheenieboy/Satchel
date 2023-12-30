@@ -14,15 +14,25 @@ jobs:
           cache: true
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Selene
-        run: selene src
+        id: selene
+        run: |
+          OUTPUT=$(selene src)
+          echo "::set-output name=selene_output::$OUTPUT"
+      - name: Add output to job summary
+        run: |
+          echo "### Selene Output: ${{ steps.selene.outputs.selene_output }}" >> $GITHUB_STEP_SUMMARY
   style:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run StyLua
+        id: stylua
         uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check src
+      - name: Adding output to job summary
+        run: |
+          echo "### StyLua Output: ${{ steps.stylua.outputs.stylua_output }}" >> $GITHUB_STEP_SUMMARY
