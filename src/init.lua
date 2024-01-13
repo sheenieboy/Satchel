@@ -1854,7 +1854,7 @@ do -- Search stuff
 	searchBox.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
 	searchBox.TextColor3 = TEXT_COLOR
-	searchBox.TextTransparency = TEXT_STROKE_TRANSPARENCY
+	searchBox.TextTransparency = TEXT_TRANSPARENCY
 	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
 	searchBox.ClearTextOnFocus = false
 	searchBox.TextTruncate = Enum.TextTruncate.AtEnd
