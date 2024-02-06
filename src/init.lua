@@ -1399,7 +1399,7 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
+	local goBackOneLevel = function(_actionName: string, inputState: Enum.UserInputState, _inputObject: InputObject): ()
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
