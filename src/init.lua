@@ -777,6 +777,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
+
 			HotkeyFns[ZERO_KEY_VALUE + slotNum] = function(isProcessed: any): ()
 				slot:Select(isProcessed)
 			end
@@ -1081,6 +1082,7 @@ local function OnCharacterAdded(character: Model): ()
 end
 
 local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
+	print(tostring(input.KeyCode))
 	local ChatInputBarConfiguration =
 		TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration") :: ChatInputBarConfiguration
 	-- Pass through keyboard hotkeys when not typing into a TextBox and not disabled (except for the Drop key)
