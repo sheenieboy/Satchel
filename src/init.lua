@@ -1089,7 +1089,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	if
 		input.UserInputType == Enum.UserInputType.Keyboard
 		and not TextBoxFocused
-		and not ChatInputBarConfiguration.IsFocused
+		-- and not ChatInputBarConfiguration.IsFocused
 		and (WholeThingEnabled or input.KeyCode.Value == DROP_HOTKEY_VALUE)
 	then
 		local hotkeyBehavior: any = HotkeyFns[input.KeyCode.Value]
