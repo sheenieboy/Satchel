@@ -211,7 +211,7 @@ local FullHotbarSlots: number = 0 -- Now being used to also determine whether or
 local ActiveHopper = nil -- NOTE: HopperBin
 local StarterToolFound: boolean = false -- Special handling is required for the gear currently equipped on the site
 local WholeThingEnabled: boolean = false
-local TextBoxFocused: boolean = false -- ANY TextBox, not just the search box
+-- local TextBoxFocused: boolean = false -- ANY TextBox, not just the search box
 local ViewingSearchResults: boolean = false -- If the results of a search are currently being viewed
 local CharConns: { RBXScriptConnection } = {} -- Holds character Connections to be cleared later
 local GamepadEnabled: boolean = false -- determines if our gui needs to be gamepad friendly
@@ -1083,13 +1083,12 @@ end
 
 local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	print(tostring(input.KeyCode))
-	local ChatInputBarConfiguration =
-		TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration") :: ChatInputBarConfiguration
+	local TextBoxFocused: TextBox = UserInputService:GetFocusedTextBox()
+
 	-- Pass through keyboard hotkeys when not typing into a TextBox and not disabled (except for the Drop key)
 	if
 		input.UserInputType == Enum.UserInputType.Keyboard
 		and not TextBoxFocused
-		-- and not ChatInputBarConfiguration.IsFocused
 		and (WholeThingEnabled or input.KeyCode.Value == DROP_HOTKEY_VALUE)
 	then
 		local hotkeyBehavior: any = HotkeyFns[input.KeyCode.Value]
@@ -2087,13 +2086,13 @@ do -- Hotkey stuff
 	-- Listen to key down
 	UserInputService.InputBegan:Connect(OnInputBegan)
 
-	-- Listen to ANY TextBox gaining or losing focus, for disabling all hotkeys
-	UserInputService.TextBoxFocused:Connect(function(): ()
-		TextBoxFocused = true
-	end)
-	UserInputService.TextBoxFocusReleased:Connect(function(): ()
-		TextBoxFocused = false
-	end)
+	-- -- Listen to ANY TextBox gaining or losing focus, for disabling all hotkeys
+	-- UserInputService.TextBoxFocused:Connect(function(): ()
+	-- 	TextBoxFocused = true
+	-- end)
+	-- UserInputService.TextBoxFocusReleased:Connect(function(): ()
+	-- 	TextBoxFocused = false
+	-- end)
 
 	-- Manual unequip for HopperBins on drop button pressed
 	HotkeyFns[DROP_HOTKEY_VALUE] = function(): () --NOTE: HopperBin
