@@ -213,7 +213,6 @@ local StarterToolFound: boolean = false -- Special handling is required for the 
 local WholeThingEnabled: boolean = false
 local TextBoxFocused: boolean = false -- ANY TextBox, not just the search box
 local ViewingSearchResults: boolean = false -- If the results of a search are currently being viewed
--- local HotkeyStrings = {} -- Used for eating/releasing hotkeys
 local CharConns: { RBXScriptConnection } = {} -- Holds character Connections to be cleared later
 local GamepadEnabled: boolean = false -- determines if our gui needs to be gamepad friendly
 
@@ -1495,15 +1494,6 @@ local function OnIconChanged(enabled: boolean): ()
 	end
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
-
-	-- Eat/Release hotkeys (Doesn't affect UserInputService)
-	-- for _, keyString in pairs(HotkeyStrings) do
-	-- 	if enabled then
-	-- 		GuiService:AddKey(keyString)
-	-- 	else
-	-- 		GuiService:RemoveKey(keyString)
-	-- 	end
-	-- end
 
 	if enabled then
 		if FullHotbarSlots >= 1 then
