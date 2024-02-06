@@ -777,7 +777,9 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
-			HotkeyFns[ZERO_KEY_VALUE + slotNum] = slot.Select
+			HotkeyFns[ZERO_KEY_VALUE + slotNum] = function(isProcessed: any): ()
+				slot:Select(isProcessed)
+			end
 		end
 	end
 
